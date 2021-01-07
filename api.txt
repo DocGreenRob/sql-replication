@@ -5,4 +5,4 @@ myexe.exe -action distribution
 myexe.exe -action publication -replpublicationname 'CDCTransactionRepl' -tablenames 'table_1, table_2' -sqlloginuser 'sa' -sqlloginpassword 'myPassword'
 
 // 3
-myexe.exe -action subscription -replpublicationname 'CDCTransactionRepl' -subscriber_ip '192.168.225.24,1433' -tablenames 'table_1, table_2' -sqlloginuser 'sa' -sqlloginpassword 'myPassword'
+myexe.exe -action subscription -replpublicationname 'CDCTransactionRepl' -subscriber_ip '192.168.225.24,1433' -subscriberDB 'myDb' -sqlloginuser 'sa' -sqlloginpassword 'myPassword'
