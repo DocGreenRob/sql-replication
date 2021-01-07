@@ -9,10 +9,10 @@ GO
 	@sqlloginuser is for an authentication user at Publisher side.
 	@sqlloginpassword is for a password of SQL Login [@sqlloginuser]
 */
-DECLARE @replpublicationname NVARCHAR(256)= N'CDCTransactionRepl'
-DECLARE @tablenames NVARCHAR(1024) = 'user_details, user_type'
-DECLARE @sqlloginuser NVARCHAR(128) = N'sa'
-DECLARE @sqlloginpassword NVARCHAR(128) = N'1234'
+DECLARE @replpublicationname NVARCHAR(256)= N'{{publication_name}}'
+DECLARE @tablenames NVARCHAR(1024) = '{{tables_names}}'
+DECLARE @sqlloginuser NVARCHAR(128) = N'{{sql_user}}'
+DECLARE @sqlloginpassword NVARCHAR(128) = N'{{user_pwd}}'
 
 /*----------------Adding Publication by DMV's----------------*/
 DECLARE @databasename NVARCHAR(128)

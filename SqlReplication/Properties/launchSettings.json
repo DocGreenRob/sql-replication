@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SqlReplication": {
+      "commandName": "Project",
+      "commandLineArgs": "-action \"distribution\""
+    }
+  }
+}
