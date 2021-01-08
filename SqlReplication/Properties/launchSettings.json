@@ -1,8 +1,8 @@
 {
-  "profiles": {
-    "SqlReplication": {
-      "commandName": "Project",
-      "commandLineArgs": "-action publication -database UPWORK -replpublicationname CDCTransactionRepl -tablenames cliente -sqlloginuser sa -sqlloginpassword Ucbh2017"
-    }
-  }
+	"profiles": {
+		"SqlReplication": {
+			"commandName": "Project",
+			"commandLineArgs": "-action subscription -database ParataSampleSource -replpublicationname CDCTransactionRepl -subscriber_ip 192.168.1.221,1433 -subscriberDB ReplicatedDatabase2 -sqlloginuser sa -sqlloginpassword abc@123A"
+		}
+	}
 }
