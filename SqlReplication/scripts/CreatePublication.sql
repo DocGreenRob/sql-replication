@@ -1,4 +1,4 @@
-use {{source_database_name}}
+use {{database_name}}
 GO
 
 /* 
@@ -9,6 +9,7 @@ GO
 	@sqlloginuser is for an authentication user at Publisher side.
 	@sqlloginpassword is for a password of SQL Login [@sqlloginuser]
 */
+
 DECLARE @replpublicationname NVARCHAR(256)= N'{{publication_name}}'
 DECLARE @tablenames NVARCHAR(1024) = '{{tables_names}}'
 DECLARE @sqlloginuser NVARCHAR(128) = N'{{sql_user}}'
