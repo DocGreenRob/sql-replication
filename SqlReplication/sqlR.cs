@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace SqlReplication
 {
+
     class sqlR
     {
 
