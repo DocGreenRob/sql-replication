@@ -2,7 +2,7 @@
   "profiles": {
     "SqlReplication": {
       "commandName": "Project",
-      "commandLineArgs": "-action \"distribution\""
+      "commandLineArgs": "-action publication -database UPWORK -replpublicationname CDCTransactionRepl -tablenames cliente -sqlloginuser sa -sqlloginpassword Ucbh2017"
     }
   }
 }
