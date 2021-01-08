@@ -2,7 +2,7 @@
   "profiles": {
     "SqlReplication": {
       "commandName": "Project",
-      "commandLineArgs": "-action publication -replpublicationname CDCTransactionRepl -database ParataSampleSource -tablenames Table_1 -sqlloginuser sa -sqlloginpassword abc@123A"
+      "commandLineArgs": "-action publication -database UPWORK -replpublicationname CDCTransactionRepl -tablenames cliente -sqlloginuser sa -sqlloginpassword Ucbh2017"
     }
   }
 }
