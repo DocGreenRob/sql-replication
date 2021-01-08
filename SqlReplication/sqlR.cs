@@ -66,7 +66,7 @@ namespace SqlReplication
                 {
                     try
                     {
-                        string pathDistributionFile = ConfigurationManager.AppSettings["CreatePublication"];
+                        string pathDistributionFile = ConfigurationManager.AppSettings["PublicationFile"];
 
                         string script = File.ReadAllText(pathDistributionFile);
 
@@ -94,7 +94,6 @@ namespace SqlReplication
                                 script = script.Replace("{{user_pwd}}", args[i + 1].ToString());
                             }
                         }
-
                         // split script on GO command
                         System.Collections.Generic.IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$",
                                                  RegexOptions.Multiline | RegexOptions.IgnoreCase);
@@ -207,8 +206,6 @@ namespace SqlReplication
                 Console.WriteLine("No action provided...");
             }
            
-
-
         }
     }
 }
