@@ -1,4 +1,4 @@
-use master
+use {{database_name}}
 GO
 
 /* 

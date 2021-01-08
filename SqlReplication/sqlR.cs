@@ -73,6 +73,10 @@ namespace SqlReplication
                         //Parse Vales
                         for (int i = 0; i < args.Length; i++)
                         {
+                            if (args[i] == "-database")
+                            {
+                                script = script.Replace("{{database_name}}", args[i + 1].ToString());
+                            }
                             if (args[i] == "-replpublicationname")
                             {
                                 script = script.Replace("{{publication_name}}", args[i+1].ToString());
@@ -137,6 +141,10 @@ namespace SqlReplication
                         //Parse Vales
                         for (int i = 0; i < args.Length; i++)
                         {
+                            if (args[i] == "-database")
+                            {
+                                script = script.Replace("{{database_name}}", args[i + 1].ToString());
+                            }
                             if (args[i] == "-replpublicationname")
                             {
                                 script = script.Replace("{{publication_name}}", args[i + 1].ToString());
