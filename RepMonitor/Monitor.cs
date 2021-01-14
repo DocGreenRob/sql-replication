@@ -20,7 +20,7 @@ namespace RepMonitor
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
+                   
                     using (SqlCommand cmd = new SqlCommand("sp_replmonitorhelpsubscription", conn))
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -63,9 +63,22 @@ namespace RepMonitor
                         int ith = 1;
                         while (ith == 1)
                         {
-                            Console.WriteLine(cmd.ExecuteReader());
-                            //wait 5 min
-                            System.Threading.Thread.Sleep(300000);
+                            conn.Open();
+                            using (SqlDataAdapter da = new SqlDataAdapter())
+                            {
+                                da.SelectCommand = cmd;
+                                using (DataTable dt = new DataTable())
+                                {
+                                    da.Fill(dt);
+                                    foreach(DataRow rw in dt.Rows)
+                                    {
+                                        Console.WriteLine("Status: " + rw[0].ToString() + ", warning: " + rw[1].ToString());
+                                    }                        
+                                }        
+                            }                 
+                            conn.Close();
+                            //wait 5 seg
+                            System.Threading.Thread.Sleep(5000);
                         }
 
                         //Loop for 5 minutes
