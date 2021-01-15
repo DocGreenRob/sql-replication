@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Linq;
 using System.Collections.Generic;
+using System.Data;
 
 namespace SqlReplication
 {
@@ -164,6 +165,7 @@ namespace SqlReplication
                             Console.WriteLine(ex.Message);
                         }
                     }
+                    
                     //Subscription File
                     else if (args[1].ToString().Equals("subscription"))
                     {
@@ -275,6 +277,118 @@ namespace SqlReplication
                         {
                             Console.WriteLine(ex.Message);
                         }
+                    }
+                    
+                    //Remove Distribution
+                    //Please refer to https://docs.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-dropdistributor-transact-sql?view=sql-server-ver15
+                    else if (args[1].ToString().Equals("removeDistribution")){
+                        try
+                        {
+                            using (SqlConnection conn = new SqlConnection(connectionString))
+                            {
+
+                                using (SqlCommand cmd = new SqlCommand("sp_dropdistributor", conn))
+                                {
+                                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                                    cmd.Parameters.Add("@no_checks", SqlDbType.Bit).Value = 1;
+                                    cmd.Parameters.Add("@ignore_distributor ", SqlDbType.Bit).Value = 0;
+                                    conn.Open();
+                                    cmd.ExecuteNonQuery();
+                                    Console.WriteLine("Distribution was dropped correctly");
+                                    conn.Close();
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.Write("Drop Distribution Error: ");
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
+                    
+                    //Remove Publication
+                    //Please refer to https://docs.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-droppublication-transact-sql?view=sql-server-ver15
+                    else if (args[1].ToString().Equals("removePublication"))
+                    {
+                        try
+                        {
+                            using (SqlConnection conn = new SqlConnection(connectionString))
+                            {
+
+                                using (SqlCommand cmd = new SqlCommand("sp_droppublication", conn))
+                                {
+                                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                                    for (int i = 0; i < args.Length; i++)
+                                    {
+                                        if (args[i] == "-publication")
+                                        {
+                                            cmd.Parameters.Add("@publication", SqlDbType.VarChar).Value = args[i + 1].ToString();
+                                        }
+                                    }
+                                    if (cmd.Parameters.Count == 0)
+                                    {
+                                        cmd.Parameters.Add("@publication", SqlDbType.VarChar).Value = "all";
+                                    }
+                                    conn.Open();
+                                    cmd.ExecuteNonQuery();
+                                    Console.WriteLine("the Publication was dropped correctly");
+                                    conn.Close();
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.Write("Drop Publication Error: ");
+                            Console.WriteLine(ex.Message);
+                        }
+                        
+                    }
+                   
+                    //Remove Subscription
+                    //please refers to https://docs.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-dropsubscription-transact-sql?view=sql-server-ver15
+                    else if (args[1].ToString().Equals("removeSubscription"))
+                    {
+                        try
+                        {
+                            using (SqlConnection conn = new SqlConnection(connectionString))
+                            {
+
+                                using (SqlCommand cmd = new SqlCommand("sp_dropsubscription", conn))
+                                {
+                                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                                    for (int i = 0; i < args.Length; i++)
+                                    {
+                                        if (args[i] == "-publication")
+                                        {
+                                            cmd.Parameters.Add("@publication", SqlDbType.VarChar).Value = args[i + 1].ToString();
+                                        }
+                                        if (args[i] == "-article")
+                                        {
+                                            cmd.Parameters.Add("@article", SqlDbType.VarChar).Value = args[i + 1].ToString();
+                                        }
+                                        if (args[i] == "-subscriber")
+                                        {
+                                            cmd.Parameters.Add("@subscriber", SqlDbType.VarChar).Value = args[i + 1].ToString();
+                                        }
+                                        if (args[i] == "-destination_db")
+                                        {
+                                            cmd.Parameters.Add("@destination_db", SqlDbType.VarChar).Value = args[i + 1].ToString();
+                                        }
+
+                                    }
+                                    conn.Open();
+                                    cmd.ExecuteNonQuery();
+                                    Console.WriteLine("the Subscription was dropped correctly");
+                                    conn.Close();
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.Write("Drop Subscription Error: ");
+                            Console.WriteLine(ex.Message);
+                        }
+
                     }
                 }
                 else

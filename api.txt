@@ -6,3 +6,15 @@ SqlReplication.exe -action publication -database dbName -replpublicationname CDC
 
 // 3
 SqlReplication.exe -action subscription -database dbName -replpublicationname CDCTransactionRepl -subscriber_ip 127.0.0.1,1433 -subscriberDB SubscriberDatabaseName -sqlloginuser sa -sqlloginpassword abc@123
+
+//4 
+SqlReplication.exe -action removeDistribution 
+
+//5
+SqlReplication.exe -action removePublication -publication CDCTransactionRepl 
+
+//6
+SqlReplication.exe -action removeSubscription -publication CDCTransactionRepl -subscriber Sub -destination_db SubDB
+
+there's a optional argument in removeSubscription called -article 
+[ @article = ] 'article' Is the name of the article. article is sysname, with a default value of NULL. If all, subscriptions to all articles for each specified publication and Subscriber are dropped. Use all for publications that allow immediate updating.
