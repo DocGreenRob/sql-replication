@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RepMonitor": {
+      "commandName": "Project",
+      "commandLineArgs": "-publication_type 0"
+    }
+  }
+}

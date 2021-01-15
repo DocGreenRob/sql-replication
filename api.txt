@@ -2,7 +2,7 @@
 SqlReplication.exe -action distribution
 
 // 2
-SqlReplication.exe -action publication -database UPWORK -replpublicationname CDCTransactionRepl -tablenames cliente -sqlloginuser sa -sqlloginpassword Ucbh2017
+SqlReplication.exe -action publication -database dbName -replpublicationname CDCTransactionRepl -tablenames 'table_1, table_2' -sqlloginuser sa -sqlloginpassword abc@123
 
 // 3
-SqlReplication.exe -action subscription -database UPWORK -replpublicationname CDCTransactionRepl -subscriber_ip 127.0.0.1,1433 -subscriberDB ODAN -sqlloginuser sa -sqlloginpassword Ucbh2017
+SqlReplication.exe -action subscription -database dbName -replpublicationname CDCTransactionRepl -subscriber_ip 127.0.0.1,1433 -subscriberDB SubscriberDatabaseName -sqlloginuser sa -sqlloginpassword abc@123
