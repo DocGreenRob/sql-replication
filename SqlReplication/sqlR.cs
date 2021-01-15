@@ -375,7 +375,6 @@ namespace SqlReplication
 										{
 											cmd.Parameters.Add("@destination_db", SqlDbType.VarChar).Value = args[i + 1].ToString();
 										}
-
 									}
 									conn.Open();
 									cmd.ExecuteNonQuery();
