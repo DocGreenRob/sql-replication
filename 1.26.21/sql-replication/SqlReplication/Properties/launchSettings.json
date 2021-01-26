@@ -1,0 +1,10 @@
+{
+	"profiles": {
+		"SqlReplication": {
+			"commandName": "Project",
+			//"commandLineArgs": "-action subscription -database ParataSampleSource -replpublicationname CDCTransactionRepl -subscriber_ip 192.168.1.221,1433 -subscriberDB ReplicatedDatabase2 -sqlloginuser sa -sqlloginpassword abc@123A"
+			//"commandLineArgs": "-action removeSubscription -publication CDCTransactionRepl -subscriber 192.168.1.221,1433 -destination_db ReplicatedDatabase3 -article table_1"
+			"commandLineArgs": "-action removeDistribution"
+		}
+	}
+}
